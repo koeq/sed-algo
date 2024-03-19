@@ -1,14 +1,6 @@
-class NNode<T> {
-  item: T;
-  next: NNode<T> | undefined;
+import { NNode } from "./nnode";
 
-  constructor(item: T) {
-    this.item = item;
-    this.next = undefined;
-  }
-}
-
-// <- . . . <-
+// <-  .->.->.  <-
 class Queue<T> {
   first: NNode<T> | undefined;
   last: NNode<T> | undefined;
