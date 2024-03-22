@@ -1,4 +1,4 @@
-class Stack<T> {
+export class Stack<T> {
   private a: T[];
   private n: number;
 
@@ -14,7 +14,7 @@ class Stack<T> {
 
   pop(): T | undefined {
     if (this.n === 0) return;
-    this.n++;
+    this.n--;
     return this.a.pop();
   }
 
