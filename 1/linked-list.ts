@@ -61,6 +61,14 @@ class LinkedList<T> {
   }
 }
 
+const find = <T>(item: T, list: LinkedList<T>): boolean => {
+  for (const listItem of list) {
+    if (listItem === item) return true;
+  }
+
+  return false;
+};
+
 const main = () => {
   const linked = new LinkedList();
   linked.add(0);
@@ -69,6 +77,7 @@ const main = () => {
   linked.add(3);
 
   linked.delete(3);
+  console.log(find(2, linked));
 
   for (const item of linked) {
     console.log(item);
