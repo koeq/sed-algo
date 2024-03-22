@@ -112,6 +112,25 @@ const reverse = <T>(node: NNode<T> | undefined): NNode<T> | undefined => {
   return reverse;
 };
 
+// 1 -> 2 -> 3 -> 4 -> undefined
+// 4 -> undefined
+// 4 -> 3 -> undefined
+// 4 -> 3 -> 2 -> undefined
+// 4 -> 3 -> 2 -> 1 -> undefined
+const reverseRecursive = <T>(
+  first: NNode<T> | undefined
+): NNode<T> | undefined => {
+  if (!first) return;
+  if (!first.next) return first;
+
+  let second = first.next;
+  let newFirst = reverseRecursive(second);
+  second.next = first;
+  first.next = undefined;
+
+  return newFirst;
+};
+
 const main = () => {
   const linked = new LinkedList();
   linked.add(0);
