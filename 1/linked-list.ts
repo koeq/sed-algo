@@ -98,6 +98,20 @@ const maxSecondParameter = (
   return maxSecondParameter(node.next, max);
 };
 
+const reverse = <T>(node: NNode<T> | undefined): NNode<T> | undefined => {
+  let first = node;
+  let reverse: NNode<T> | undefined;
+
+  while (first) {
+    let second = first.next;
+    first.next = reverse;
+    reverse = first;
+    first = second;
+  }
+
+  return reverse;
+};
+
 const main = () => {
   const linked = new LinkedList();
   linked.add(0);
