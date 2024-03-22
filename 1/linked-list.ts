@@ -80,6 +80,19 @@ const insertAfter = <T>(first: NNode<T>, second: NNode<T>) => {
   first.next = second;
 };
 
+let maxNum: number = 0;
+const max = (node: NNode<number> | undefined): number => {
+  if (!node) return maxNum;
+
+  if (node.item > maxNum) {
+    maxNum = node.item;
+  }
+
+  max(node.next);
+
+  return maxNum;
+};
+
 const main = () => {
   const linked = new LinkedList();
   linked.add(0);
