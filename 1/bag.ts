@@ -31,18 +31,18 @@ import { NNode } from "./nnode";
 // Iterables are objects that can be iterated over by implementing a Symbol.iterator method that returns an iterator object.
 
 class Bag<T> {
-  private first: NNode<T> | undefined;
+  #first: NNode<T> | undefined;
 
   add(item: T) {
-    const oldFirst = this.first;
-    this.first = new NNode(item);
-    this.first.next = oldFirst;
+    const oldFirst = this.#first;
+    this.#first = new NNode(item);
+    this.#first.next = oldFirst;
   }
 
   // TODO: implement JS iterator
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators
   seeAll(): void {
-    for (let current = this.first; current; current = current.next) {
+    for (let current = this.#first; current; current = current.next) {
       console.log(current.item);
     }
   }
