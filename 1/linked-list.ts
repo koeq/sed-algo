@@ -75,6 +75,11 @@ const removeAfter = <T>(node: NNode<T>) => {
   node.next = node.next?.next;
 };
 
+const insertAfter = <T>(first: NNode<T>, second: NNode<T>) => {
+  second.next = first.next;
+  first.next = second;
+};
+
 const main = () => {
   const linked = new LinkedList();
   linked.add(0);
