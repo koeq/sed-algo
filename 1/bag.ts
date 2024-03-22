@@ -39,21 +39,32 @@ class Bag<T> {
     this.#first.next = oldFirst;
   }
 
-  [Symbol.iterator]() {
+  // iterable implementation -> returning an iterator
+  // [Symbol.iterator]() {
+  //   let curr = this.#first;
+
+  //   return {
+  //     next() {
+  //       if (!curr) {
+  //         return { done: true };
+  //       }
+
+  //       let item = curr.item;
+  //       curr = curr.next;
+
+  //       return { value: item, done: false };
+  //     },
+  //   };
+  // }
+
+  // generator implementation -> returning an iterator
+  *[Symbol.iterator](): Iterator<T> {
     let curr = this.#first;
 
-    return {
-      next() {
-        if (!curr) {
-          return { done: true };
-        }
-
-        let item = curr.item;
-        curr = curr.next;
-
-        return { value: item, done: false };
-      },
-    };
+    while (curr) {
+      yield curr.item;
+      curr = curr.next;
+    }
   }
 }
 
