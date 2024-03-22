@@ -39,23 +39,34 @@ class Bag<T> {
     this.#first.next = oldFirst;
   }
 
-  // TODO: implement JS iterator
-  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators
-  seeAll(): void {
-    for (let current = this.#first; current; current = current.next) {
-      console.log(current.item);
-    }
+  [Symbol.iterator]() {
+    let curr = this.#first;
+
+    return {
+      next() {
+        if (!curr) {
+          return { done: true };
+        }
+
+        let item = curr.item;
+        curr = curr.next;
+
+        return { value: item, done: false };
+      },
+    };
   }
 }
 
 const main = () => {
-  const b = new Bag<string>();
-  b.add("up");
-  b.add("what");
-  b.add("world");
-  b.add("hello");
+  const bag = new Bag<string>();
+  bag.add("up");
+  bag.add("what");
+  bag.add("world");
+  bag.add("hello");
 
-  b.seeAll();
+  for (const item of bag) {
+    console.log(item);
+  }
 };
 
 main();
