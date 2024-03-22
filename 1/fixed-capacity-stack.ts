@@ -22,7 +22,7 @@ export class Stack<T> {
     return this.size;
   }
 
-  isEmtpy(): boolean {
+  isEmpty(): boolean {
     return this.size === 0;
   }
 }

@@ -10,26 +10,17 @@ const isClosing = (s: string) => s === ")" || s === "]" || s === "}";
 
 const main = () => {
   const stack = new Stack<string>();
-  const args = process.argv.slice(2);
+  const input = process.argv[2];
 
-  for (const arg of args) {
-    stack.push(arg);
-  }
-
-  const closing = new Stack<string>();
-
-  while (!stack.isEmtpy()) {
-    let curr = stack.pop()!;
-
-    if (isClosing(curr)) {
-      closing.push(curr);
-      continue;
+  for (const char of input) {
+    if (!isClosing(char)) {
+      stack.push(map[char]);
+    } else {
+      if (char !== stack.pop()) return false;
     }
-
-    if (map[curr] !== closing.pop()) return false;
   }
 
-  return stack.getSize() === 0 && closing.getSize() === 0;
+  return stack.isEmpty();
 };
 
 console.log(main());
