@@ -24,6 +24,33 @@ class LinkedList<T> {
     this.#size++;
   }
 
+  delete(k: number): T | undefined {
+    if (this.#size === 0 || k < 0 || k >= this.#size) return;
+
+    let curr = this.#first;
+    let prev: NNode<T> | undefined;
+
+    if (k === 0) {
+      const deletedItem = curr!.item;
+      this.#first = curr!.next;
+      this.#size--;
+
+      return deletedItem;
+    }
+
+    for (let i = 0; curr && i < k; i++) {
+      prev = curr;
+      curr = curr.next;
+    }
+
+    if (!curr) return;
+
+    prev!.next = curr.next;
+    this.#size--;
+
+    return curr.item;
+  }
+
   *[Symbol.iterator]() {
     let curr = this.#first;
 
@@ -40,6 +67,8 @@ const main = () => {
   linked.add(1);
   linked.add(2);
   linked.add(3);
+
+  linked.delete(3);
 
   for (const item of linked) {
     console.log(item);
