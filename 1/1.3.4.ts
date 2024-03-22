@@ -10,9 +10,9 @@ const isClosing = (s: string) => s === ")" || s === "]" || s === "}";
 
 const main = () => {
   const stack = new Stack<string>();
-  const input = process.argv[2];
+  const inputString = process.argv[2];
 
-  for (const char of input) {
+  for (const char of inputString) {
     if (!isClosing(char)) {
       stack.push(map[char]);
     } else {
