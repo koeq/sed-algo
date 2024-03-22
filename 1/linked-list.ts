@@ -24,6 +24,7 @@ class LinkedList<T> {
     this.#size++;
   }
 
+  // 1.3.20
   delete(k: number): T | undefined {
     if (this.#size === 0 || k < 0 || k >= this.#size) return;
 
@@ -61,12 +62,17 @@ class LinkedList<T> {
   }
 }
 
+// 1.3.21
 const find = <T>(item: T, list: LinkedList<T>): boolean => {
   for (const listItem of list) {
     if (listItem === item) return true;
   }
 
   return false;
+};
+
+const removeAfter = <T>(node: NNode<T>) => {
+  node.next = node.next?.next;
 };
 
 const main = () => {
@@ -76,8 +82,8 @@ const main = () => {
   linked.add(2);
   linked.add(3);
 
-  linked.delete(3);
-  console.log(find(2, linked));
+  // linked.delete(3);
+  // console.log(find(2, linked));
 
   for (const item of linked) {
     console.log(item);
