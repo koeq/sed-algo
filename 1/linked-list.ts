@@ -80,12 +80,22 @@ const insertAfter = <T>(first: NNode<T>, second: NNode<T>) => {
   first.next = second;
 };
 
-const max = (node: NNode<number> | undefined): number => {
-  if (!node) return Number.MIN_SAFE_INTEGER;
+// const max = (node: NNode<number> | undefined): number => {
+//   if (!node) return Number.MIN_SAFE_INTEGER;
 
-  const maxRest = max(node.next);
+//   const maxRest = max(node.next);
 
-  return Math.max(node.item, maxRest);
+//   return Math.max(node.item, maxRest);
+// };
+
+const maxSecondParameter = (
+  node: NNode<number> | undefined,
+  max: number = Number.MIN_SAFE_INTEGER
+) => {
+  if (!node) return max;
+  if (node.item > max) max = node.item;
+
+  return maxSecondParameter(node.next, max);
 };
 
 const main = () => {
