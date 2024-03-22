@@ -1,29 +1,29 @@
 export class Stack<T> {
   private a: T[];
-  private n: number;
+  private size: number;
 
   constructor() {
     this.a = [];
-    this.n = 0;
+    this.size = 0;
   }
 
   push(item: T): void {
-    this.n++;
+    this.size++;
     this.a.push(item);
   }
 
   pop(): T | undefined {
-    if (this.n === 0) return;
-    this.n--;
+    if (this.size === 0) return;
+    this.size--;
     return this.a.pop();
   }
 
-  size(): number {
-    return this.n;
+  getSize(): number {
+    return this.size;
   }
 
   isEmtpy(): boolean {
-    return this.n === 0;
+    return this.size === 0;
   }
 }
 
@@ -40,7 +40,7 @@ const main = () => {
   }
   process.stdout.write("\n");
 
-  console.log(`(${stack.size()} left on stack)`);
+  console.log(`(${stack.getSize()} left on stack)`);
 };
 
-main();
+// main();
