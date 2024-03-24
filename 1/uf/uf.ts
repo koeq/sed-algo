@@ -49,16 +49,24 @@ class UF {
   // }
 
   // QUICK UNION
+  // best case: linear
+  // worst case quadratic
+
+  // min: 1, max: 2n+1
+  // or: num of array accesses is 1 plus twice the depth of the node in the given component tree
+  // -> plus one because we have to check if the site refernces itself
   find(p: number): number {
     while (p !== this.#id[p]) p = this.#id[p];
     return p;
   }
 
   union(p: number, q: number) {
+    // min: 2, max: 4n+2
     const pRoot = this.find(p);
     const qRoot = this.find(q);
 
     if (pRoot === qRoot) return;
+    // 1
     this.#id[pRoot] = qRoot;
     this.#count--;
   }
