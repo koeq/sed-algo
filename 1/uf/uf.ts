@@ -23,8 +23,24 @@ class UF {
     return this.#count;
   }
 
-  find(p: number) {}
-  union(p: number, q: number) {}
+  find(p: number): number {
+    return this.#id[p];
+  }
+
+  union(p: number, q: number): void {
+    const pId = this.find(p);
+    const qId = this.find(q);
+
+    if (pId === qId) return;
+
+    for (let i = 0; i < this.#id.length; i++) {
+      if (this.#id[i] === qId) {
+        this.#id[i] = pId;
+      }
+    }
+
+    this.#count--;
+  }
 }
 
 async function main() {
